@@ -1,0 +1,39 @@
+class Solution {
+    public List<String> letterCasePermutation(String s) {
+    List<String> arr = new ArrayList<>();
+       fun(arr,0,s,"");
+        return arr;
+
+    }
+    static void fun(List<String> arr, int i, String s, String str)
+    {
+        if(i==s.length())
+        {
+            if(!arr.contains(str))
+                arr.add(str);
+            return;
+        }
+        if(s.charAt(i)>='0' && s.charAt(i)<='9')
+            fun(arr,i+1,s, str+""+s.charAt(i));
+
+        if(s.charAt(i)>='a' && s.charAt(i)<='z')
+        {
+            int idx =  s.charAt(i)-'a';
+            char ch = (char)('A'+idx);
+
+            fun(arr,i+1, s,str+ch);
+        }
+        if(s.charAt(i)>='A' && s.charAt(i)<='Z')
+        {
+
+            int idx =  s.charAt(i)-'A';
+            char ch = (char)('a'+idx);
+
+            fun(arr,i+1, s,str+ch);
+        }
+        fun(arr,i+1, s,str+s.charAt(i));
+
+        return;
+
+    }
+}
