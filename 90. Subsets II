@@ -1,0 +1,40 @@
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        
+        Arrays.sort(nums);
+     List<List<Integer>> ans = new ArrayList<>();
+       ArrayList<Integer> arr = new ArrayList<>();
+
+       fun(nums,arr,0,ans);
+       return ans;
+
+
+
+
+
+
+
+    }
+    static void fun(int[] nums, ArrayList<Integer> arr, int i, List<List<Integer>> ans)
+    {
+        if(i== nums.length)
+        {
+
+            ArrayList<Integer> temp = new ArrayList(arr);
+            
+            if(!ans.contains(temp))
+                ans.add(temp);
+            
+            return;
+        }
+
+        arr.add(nums[i]);
+        fun(nums,arr,i+1,ans);
+
+        arr.remove(arr.size()-1);
+        fun(nums,arr,i+1,ans);
+
+        return;
+
+    }
+}
