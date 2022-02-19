@@ -1,0 +1,32 @@
+class Solution {
+    public List<List<Integer>> permute(int[] num) {
+        
+    Integer arr[] = new Integer[num.length];
+        List<List<Integer>> ans = new ArrayList<>();
+        boolean used[] = new boolean[num.length];
+        fun(0,0, num.length, used,ans,arr,num);
+        return ans;
+
+    }
+
+    static void fun(int i, int loc, int n, boolean used[],List<List<Integer>> ans, Integer arr[], int num[]) {
+
+        if (loc == n) {
+            ans.add(new ArrayList<>(Arrays.asList(arr)));
+            return;
+        }
+
+        for (int k = 0; k < n; k++) {
+            if(used[k])
+                continue;
+            used[k] = true;
+            arr[loc] = num[k];
+            fun(k + 1, loc + 1, n, used,ans, arr, num);
+            used[k] = false;
+        }
+
+
+        return;
+
+    }
+}
