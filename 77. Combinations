@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        
+        List<List<Integer>> ans = new ArrayList<>();
+        fun(n, k, 1, 0,ans, new Integer[k]);
+        
+        return ans;
+
+    }
+
+    static void fun(int n, int k, int i, int loc,List<List<Integer>> ans,Integer arr[]) {
+
+        if (loc == k) {
+            List<Integer> temp = Arrays.asList(arr);
+            ans.add(new ArrayList<Integer>(temp));
+            return;
+        }
+
+        for(int t = i;t<=n;t++) {
+            arr[loc] = t;
+            fun(n, k, t + 1, loc+1,ans, arr);
+
+        }
+        return;
+
+    }
+}
