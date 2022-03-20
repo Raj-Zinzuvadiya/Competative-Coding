@@ -1,0 +1,50 @@
+class Solution {
+    public int minDominoRotations(int[] tops, int[] bottoms) {
+       int count[] = new int[6];
+        for (int i = 0; i < tops.length; ++i) {
+            ++count[tops[i] - 1];
+            ++count[bottoms[i] - 1];
+        }
+
+        int ans = -1;
+        int val = Integer.MAX_VALUE;
+        for (int m = 0; m < 6; ++m) {
+            if (count[m] >= tops.length) {
+                if (count[m] == 2 * tops.length)
+                    return 0;
+                else
+                {
+                    int j = m+1;
+                    int temp = 0;
+                    int top = 0;
+                    int bottom = 0;
+                    for (int i = 0; i < tops.length; ++i) {
+                        if (tops[i] == j || bottoms[i] == j) {
+                            if (!(tops[i] == j && bottoms[i] == j)) {
+                                top += tops[i] == j ? 1 : 0;
+                                bottom += bottoms[i] == j ? 1 : 0;
+                            } else
+                                ++temp;
+                        } else {
+                            ans = i;
+                            break;
+                        }
+                    }
+                    if (temp == tops.length)
+                        val = 0;
+                    if (ans == -1) {
+                        val = Math.min(val, Math.min(top, bottom));
+                    }
+                }
+
+            }
+        }
+
+
+        if (val == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return val;
+
+    }
+}
