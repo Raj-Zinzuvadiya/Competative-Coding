@@ -1,0 +1,25 @@
+class Solution {
+    public String getSmallestString(int n, int k) {
+        StringBuilder str = new StringBuilder();
+       StringBuilder str1 = new StringBuilder();
+       while(k>=26 && (k-26)>=n)
+       {
+           str1.append('z');
+           k = k-26;
+           --n;
+       }
+
+        while(n>1)
+        {
+            str.append('a');
+            --n;
+            --k;
+        }
+
+        str.append((char)('a' + (k -1)));
+        String s = str.toString() + str1.toString();
+        return s;
+       
+
+    }
+}
